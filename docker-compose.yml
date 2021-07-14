@@ -1964,7 +1964,7 @@ services:
     kafka:
       image: wurstmeister/kafka
       ports:
-        - "9092:9092"
+        - 9092+:9092
       environment:
         KAFKA_BROKER_ID: 1
         KAFKA_ADVERTISED_HOST_NAME: 127.0.0.1
@@ -2004,3 +2004,8 @@ services:
         - ${TARANTOOL_ADMIN_PORT}:80
       networks:
         - backend
+
+
+
+### mycat ###########################################
+
