@@ -1964,7 +1964,7 @@ services:
     kafka:
       image: wurstmeister/kafka
       ports:
-        - "9092"
+        - "9092:9092"
       environment:
         KAFKA_BROKER_ID: 1
         KAFKA_ADVERTISED_HOST_NAME: 127.0.0.1
@@ -1978,56 +1978,39 @@ services:
         - backend
 
 ### kafka ####################################################
-kafka:
-  image: wurstmeister/kafka
-  ports:
-    - "9092:9092"
-  environment:
-    KAFKA_BROKER_ID: 1
-    KAFKA_ADVERTISED_HOST_NAME: 127.0.0.1
-    KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://127.0.0.1:9092
-    KAFKA_MESSAGE_MAX_BYTES: 2000000
-    KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-  volumes:
-    - ${DATA_PATH_HOST}/kafka:/kafka
-    - /var/run/docker.sock:/var/run/docker.sock
-  networks:
-    - backend
+    kafka1:
+      image: wurstmeister/kafka
+      ports:
+        - "9093:9092"
+      environment:
+        KAFKA_BROKER_ID: 2
+        KAFKA_ADVERTISED_HOST_NAME: 127.0.0.1
+        KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://127.0.0.1:9092
+        KAFKA_MESSAGE_MAX_BYTES: 2000000
+        KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      volumes:
+        - ${DATA_PATH_HOST}/kafka1:/kafka
+        - /var/run/docker.sock:/var/run/docker.sock
+      networks:
+        - backend
 
-### kafka1 ####################################################
-kafka1:
-  image: wurstmeister/kafka
-  ports:
-    - "9093:9092"
-  environment:
-    KAFKA_BROKER_ID: 1
-    KAFKA_ADVERTISED_HOST_NAME: 127.0.0.1
-    KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://127.0.0.1:9092
-    KAFKA_MESSAGE_MAX_BYTES: 2000000
-    KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-  volumes:
-    - ${DATA_PATH_HOST}/kafka1:/kafka
-    - /var/run/docker.sock:/var/run/docker.sock
-  networks:
-    - backend
+### kafka ####################################################
+    kafka2:
+      image: wurstmeister/kafka
+      ports:
+        - "9092"
+      environment:
+        KAFKA_BROKER_ID: 3
+        KAFKA_ADVERTISED_HOST_NAME: 127.0.0.1
+        KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://127.0.0.1:9092
+        KAFKA_MESSAGE_MAX_BYTES: 2000000
+        KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      volumes:
+        - ${DATA_PATH_HOST}/kafka2:/kafka
+        - /var/run/docker.sock:/var/run/docker.sock
+      networks:
+        - backend
 
-### kafka2 ####################################################
-kafka2:
-  image: wurstmeister/kafka
-  ports:
-    - "9094:9092"
-  environment:
-    KAFKA_BROKER_ID: 1
-    KAFKA_ADVERTISED_HOST_NAME: 127.0.0.1
-    KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://127.0.0.1:9092
-    KAFKA_MESSAGE_MAX_BYTES: 2000000
-    KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-  volumes:
-    - ${DATA_PATH_HOST}/kafka2:/kafka
-    - /var/run/docker.sock:/var/run/docker.sock
-  networks:
-    - backend
-    
 
 ### kafka-manager ###########################################
     kafka-manager:
