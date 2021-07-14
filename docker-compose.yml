@@ -1976,6 +1976,9 @@ services:
         - /var/run/docker.sock:/var/run/docker.sock
       networks:
         - backend
+      deploy:
+        mode: replicated
+        replicas: 3
 
 ### kafka-manager ###########################################
     kafka-manager:
